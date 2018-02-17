@@ -53,19 +53,21 @@ public class RainDriver {
 		
 		// Ask the user for the directory containing the images
 		// and whether they wish to specify timing information
-		System.out.print("Enter the directory containing the images: ");
-		String fdir = myKeyboard.nextLine();
+//		System.out.print("Enter the directory containing the images: ");
+//		String fdir = myKeyboard.nextLine();
+                String fdir = "/Users/cebruns/Documents/workspace/RainConverter/assets_raw";
 		int timing = -1;
-		System.out.print("Enter a timing for the files? (y/n) "); 
-		if(myKeyboard.nextLine().equalsIgnoreCase("y")) {
-			System.out.print("Enter a timing value (0-15): ");
-			timing = myKeyboard.nextInt();
-			
-		}
+//		System.out.print("Enter a timing for the files? (y/n) "); 
+//		if(myKeyboard.nextLine().equalsIgnoreCase("y")) {
+//			System.out.print("Enter a timing value (0-15): ");
+//			timing = myKeyboard.nextInt();
+//			
+//		}
 		
 		File folder = new File(fdir + "/");
 		
 		// Iterate through each image file
+                
 		for(final File fileEntry : folder.listFiles()) {
 			BufferedImage img = null;
 			try {
@@ -77,7 +79,10 @@ public class RainDriver {
 			}
 			
 			String output = "";
-			
+                        System.out.println("Working on file " + fileEntry.getName());
+			if (!fileEntry.getName().endsWith(".png")) {
+                            continue;
+                        }
 			// Go through the first 32 by 32 pixels and create a 3 character string
 			// for each pixel that represents its RGB values in hex
 			for(int i = 0; i < 32; i++) {
